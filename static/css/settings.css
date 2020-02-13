@@ -1,0 +1,164 @@
+.settings_wrap {
+  height: 100vh;
+}
+.menu_back_btn {
+  display: block;
+  margin-left: 6%;
+  width: 16px;
+  height: 28px;
+  background-image: url("../img/arrow_back.svg");
+  background-repeat: no-repeat;
+}
+
+.service {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 3%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: left;
+  padding: 0;
+  border: none;
+  border-bottom: 1px solid #CDCDCD;
+}
+
+.service_title {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 3%;
+  color: #939393;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.service_wrapper {
+  width: 90%;
+  padding: 0;
+  margin: 0 auto;
+  margin-bottom: 3%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  list-style: none;
+}
+
+.service_item {
+  margin-bottom: 3%;
+}
+
+.service_link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  color: #40A3FF;
+  margin-bottom: 10px;
+}
+
+.service_link-black {
+  color: #000000;
+}
+
+.service_link-black span {
+  margin-left: 10px;
+  font-size: 14px;
+  line-height: 17px;
+  color: #939393;
+}
+
+.service_link-icon-info {
+  width: 19px;
+  height: 19px;
+  background-image: url("../img/icon_info.svg");
+  background-repeat: no-repeat;
+  margin-right: 10px;
+}
+
+.service_link-icon-team {
+  width: 19px;
+  height: 21px;
+  background-image: url("../img/icon_team.svg");
+  background-repeat: no-repeat;
+  margin-right: 10px;
+}
+
+.service_bottom {
+  margin: 0 auto;
+  margin-top: 0;
+  border: none;
+}
+
+.icon_back-to-task {
+  background-image: url("../img/icon_back-to-task.svg");
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 15px;
+  margin-left: 4%;
+}
+
+/* .visually-hidden:not(:focus):not(:active),
+input[type="checkbox"].visually-hidden,
+input[type="radio"].visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+} */
+
+.checkbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.checkbox_label {
+  width: 250px;
+}
+
+.checkbox_icon--on::after {
+  position: absolute;
+  content: "";
+  width: 15px;
+  height: 15px;
+  border-radius: 25px;
+  background: #40A3FF;
+  top: 3px;
+  right: 4px;
+}
+/*# sourceMappingURL=main.css.map */
+
+.settings_section {
+  margin-top: 19%;
+}
+
+.buttom_black span {
+  margin-left: 14%;
+}

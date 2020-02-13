@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, viewport-fit=cover">
+    <title>
+    </title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i&display=swap" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link href="{% static 'css/settings.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    <div class="main-container">
+    <div class="wrap">
+      <h1 class="user_id visually-hidden">{{user_id}}</h1>
+    <header>
+      <a class="menu_btn"> </a>
+      <h1 class="menu_header">Мои задачи</h1>
+    </header>
+    <main>
+      <section>
+        <div class="tasks">
+          {% for task in tasks %}
+          <div class="task">
+              <form class="task_delete" action="{% url 'task_pred_del' task_id=task.id user_id=user_id %}" method="POST">{% csrf_token %}</form>
+              <div class="task_description">
+                  <h2 class="task_header">{{task.header}}</h2>
+                  <p class="task_descript">{{task.description}}</p>
+                  <p class="task_date">{{task.task_date_new}} {{task.task_time}}</p>
+                  {% if task.task_day %}
+                  <div class="task_day">
+                    <span>Пн</span>
+                    <span>Вт</span>
+                    <span>Ср</span>
+                    <span>Чт</span>
+                    <span>Пт</span>
+                    <span>Сб</span>
+                    <span>Вс</span>
+                  </div>
+                  <div class='task_day_number visually-hidden'>{{task.task_day}}</div>
+                  {% endif %}
+                  <div class='task_id_js visually-hidden'>{{task.id}}</div>
+                  <div class='task_date_js visually-hidden'>{{task.task_date}}</div>
+                  <div class='task_time_js visually-hidden'>{{task.task_time}}</div>
+                  <div class='task_remind_one_day_js visually-hidden {task.one_day}}'></div>
+                  <div class='task_remind_one_hour_js visually-hidden {{task.one_hour}}'></div>
+                  <div class='task_remind_minutes_js visually-hidden {{task.minutes}}'></div>
+                  <div class='task_remind_date_js visually-hidden'>{{task.remind_date}}</div>
+                  <div class='task_remind_time_js visually-hidden'>{{task.remind_time}}</div>
+              </div>
+              <form class="task_important task_important_{{task.important}}" action="{% url 'task_important' task_id=task.id user_id=user_id %}" method="POST">{% csrf_token %}</form>
+              <form class="task_delete_blue_form display_none" action="{% url 'task_delete' task_id=task.id user_id=user_id %}" method="POST">
+                {% csrf_token %}
+                <button class="visually-hidden" type="submit" name="button">
+              </form>
+          </div>
+          <div class='task_pred_del_value visually-hidden'>{{task.pred_del}}</div>
+          {% endfor %}
+        </div>
+        <form class="task_form visually-hidden" action="{% url 'index' %}" method="post">
+          {% csrf_token %}
+          <div class="main_form">
+            {{form.personId}}
+            <div class="form_start">
+              <h2>Создайте задачу</h2>
+              {{form.header}}
+              {{form.description}}
+            </div>
+            <div class="form_end">
+              <div class="make_important_activate">
+                <label for="">Сделать задачу важной</label>
+                {{form.important}}
+                <div class="checkbox_icon checkbox_icon_important"></div>
+              </div>
+              <div class="line_1"></div>
+              <div class="form_task_time">
+                <div class="task_time_activate">
+                  <label for="">Установить дату и время</label>
+                  <input class="visually-hidden" type="checkbox" name="" value="">
+                  <div class="checkbox_icon checkbox_icon_date"></div>
+                </div>
+                <div class="task_time_inputs">
+                    {{form.task_date}}
+                    {{form.task_time}}
+                </div>
+              </div>
+              <div class="line_2"></div>
+              <div class="task_reminder">
+                <div class="task_reminder_activate">
+                  <label for="">Установить напоминание</label>
+                  <div class="checkbox_icon checkbox_icon_reminder"></div>
+                </div>
+                <div class="task_reminder_time">
+                  <label class="task_reminder_time_text" for="">Напомнить мне за</label>
+                  <label class="certain_time" for="">1 день</label>
+                  {{form.one_day}}
+                  <label class="certain_time" for="">1 час</label>
+                  {{form.one_hour}}
+                  <label class="certain_time" for="">30 мин</label>
+                  {{form.minutes}}
+                </div>
+                <div class="task_reminder_accurate_time">
+                  <label class="task_reminder_accurate_text" for="">Точное время</label>
+                  {{form.remind_date}}
+                  {{form.remind_time}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form_submit">
+            <div class="reset_btn">Отмена</div>
+            <div class="submit_btn"><span>Добавить</span></div>
+          </div>
+        </form>
+      </section>
+      </main>
+      <footer class="main_footer">
+        <div class="task_add">
+          <div class="plus_icon"></div>
+          <span>Добавить</span>
+        </div>
+      </footer>
+      <div class="visually-hidden end"> конец</div>
+    </div>
+    </div>
+
+    <div class="settings_container visually-hidden">
+      <div class="wrap settings_wrap">
+  <h1 class="visually-hidden">Настройки</h1>
+  <header>
+    <a class="menu_back_btn"> </a>
+    <h1 class="menu_header menu_header_settings">Настройки</h1>
+  </header>
+  <main>
+    <section class="settings_section">
+      <fieldset class="service">
+        <a href="#" class="service_link  service_task-archive">Поддержать разработчиков</a>
+        <a href="#" class="service_link  service_chat-bot">Перейти в диалог с чат-ботом</a>
+      </fieldset>
+      <fieldset class="service">
+        <legend class="service_title">Интерфейс</legend>
+        <ul class="service_wrapper">
+          <li class="service_item  checkbox">
+            <label for="checkbox_mini-task-mode">Включить режим мини-задач</label>
+            <form class="mini_mode_form visually-hidden" action="{% url 'task_mini_mode' user_id=user_id %}" method="post">{% csrf_token %}</form>
+            <div class="checkbox_icon checkbox_icon-mini"></div>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset class="service">
+        <legend class="service_title">Чат-бот</legend>
+        <ul class="service_wrapper">
+          <li class="service_item  checkbox">
+            <label for="checkbox_bot">Разрешить сообщения бота</label>
+            <input class="visually-hidden checkbox_input" type="checkbox" name="bot" id="checkbox_bot" checked>
+            <div class="checkbox_icon checkbox_icon-bot"></div>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset class="service service_bottom">
+        <div class="service_link">
+          <div class="service_link-icon-info"></div>
+          <div class="service_link-black">О приложении <span>v. 1.0</span> </div>
+        </div>
+        <div class="service_link">
+          <div class="service_link-icon-team"></div>
+          <a href="#" class="service_link-black">Контакты разработчиков</a>
+        </div>
+      </fieldset>
+</section>
+</main>
+<footer class="settings_footer">
+  <div class="buttom_black">
+    <div class="icon_back-to-task"></div>
+    <span>К задачам</span>
+  </div>
+</footer>
+<div class="person_mini_mode_value visually-hidden end {{person.mini_mode}}"><div>
+</div>
+    </div>
+    <script src="{% static 'js/form.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/settings.js' %}"></script>
+    <script src="{% static 'js/history_fixed.js' %}"></script>
+    <script src="{% static 'js/mini_mode.js' %}"></script>
+  </body>
+</html>
